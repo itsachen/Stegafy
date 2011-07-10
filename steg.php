@@ -1,43 +1,7 @@
 <?php
+//Steganography code
+//Written by Anthony Chen
 include 'config.php';
-
-$width= 0;
-$height= 0;
-$password= 'password';
-
-$token= getToken('password', $salt1, $salt2); //0af7644348baf4fc5fb8d81431f89568
-
-$message= "Bacon ipsum dolor sit amet chuck jerky incididunt ribeye.";
-
-$formattedmessage= $message . chr(219);
-
-$img = LoadJpeg('lobster_dog.jpg');
-
-$sizeinfo= getimagesize('lobster_dog.jpg');
-$width= $sizeinfo[0];
-$height= $sizeinfo[1];
-
-
-//Image can be encoded
-if ($width > 32){
-	
-    //Encoding
-    encodePW($img, $password, $salt1, $salt2);
-    encodeMessage($img, $message, $width, $height);
-    
-    //Testing
-    echo decodePW($img);
-    echo '<br/>';
-    echo decodeMessage($img, $height, $width);
-
-    //header('Content-Type: image/jpeg');
-    //imagejpeg($img);
-    //imagedestroy($img); 
-}
-//Size too small
-else {
-    die("Image size is too small");
-}
 
 /* Functions */
 function decodeMessage($image, $height, $width)
