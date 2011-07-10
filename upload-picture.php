@@ -142,6 +142,8 @@ echo <<< _END
 var parDoc = window.parent.document;
 parDoc.getElementById('message').style.borderColor = '#f86556';
 parDoc.getElementById('message').value = 'Images that are to be decoded must be at least 35 pixels by 35 pixels!';
+parDoc.getElementById('download_link').innerHTML = '';
+parDoc.getElementById('linksub').innerHTML= '';
 </script>
 _END;
     }

@@ -39,6 +39,7 @@ $('a.close, #fade').live('click', function() { //When clicking on the close or f
 });
 });
 
+
 /*Collapsable div*/
 animatedcollapse.addDiv('explination', 'fade=1,height=330px')
 animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
@@ -46,7 +47,6 @@ animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is
 	//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
 	//state: "block" or "none", depending on state
 }
-
 animatedcollapse.init()
 
 
@@ -72,9 +72,9 @@ function ajaxFileUpload(upload_field) {
     }
     
     //Loading only when encoding
-    if (document.forms.pictureForm.elements.mode.value == "encode"){
-        document.getElementById('picture_preview').innerHTML = '<div><img src="images/loading.gif" border="0" /></div>';
-    }
+
+        document.getElementById('download_link').innerHTML = '<div><img src="images/loading.gif" border="0" /></div>';
+
     
     upload_field.form.action = 'upload-picture.php';
     upload_field.form.target = 'upload_iframe';
