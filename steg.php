@@ -6,20 +6,24 @@ include 'config.php';
 /* Functions */
 function decodeMessage($image, $height, $width)
 {
+    $breakflag= false;
     $decodedMessage= "";
     for($i= 1; $i < $height; $i++) {
         for($j= 0; $j < $width; $j++) {
             
             $decodedChar= decodePixel($j, $i, $image);
             if (ord($decodedChar) == 219) {
-                goto END;
+                $breakflag= true;
+                break;
             }
             else {
                 $decodedMessage .= $decodedChar;
             }
         }
+        if ($breakflag) {
+            break;
+        }
     }
-    END:
     return $decodedMessage;
 }
 
@@ -46,6 +50,7 @@ function encodePW($image, $password, $s1, $s2)
 
 function encodeMessage($image, $message, $width, $height)
 {
+    $breakloop= false;
     $length= strlen($message);
     $lastx= 0;
     $lasty= 1;
@@ -63,12 +68,15 @@ function encodeMessage($image, $message, $width, $height)
             }
             else {
                 $lastx++;
-                goto out;
+                $breakloop= true;
+                break;
             }
         }
+        if ($breakloop) {
+            break;
+        }
     }
-    
-    out:
+
     encodePixel($lastx, $lasty, 219, $image);
 }
 
